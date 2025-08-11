@@ -11,6 +11,7 @@ class ProductController
     public function Home()
     {
         $title = "Trang chủ";
+         $products = $this->modelProduct->getAllProduct();
         require_once './views/trangchu.php';
     }
 

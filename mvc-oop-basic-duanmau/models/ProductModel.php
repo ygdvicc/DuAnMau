@@ -10,7 +10,12 @@ class ProductModel
 
     public function getAllProduct()
     {
-        // code lấy sản phẩm nếu cần
+        {
+        $sql = "SELECT * FROM product";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     }
 
     // Đăng nhập
@@ -38,4 +43,5 @@ public function register($username, $password, $email, $address, $telephone)
         ':telephone' => $telephone
     ]);
 }
+
 }

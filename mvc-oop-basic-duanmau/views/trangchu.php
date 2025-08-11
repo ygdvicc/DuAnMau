@@ -1,163 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trang chủ</title>
     <style>
-        body{
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
         }
-        body > *{
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-        }
-        .header{
+        .header {
             background-color: black;
             display: flex;
             padding: 10px 20px;
             justify-content: space-between;
             align-items: center;
+            color: white;
         }
-        .header-right {
-            background-color: black;
-            display: flex;
-            padding: 10px 20px;
-        }
-        .header-right a{
+        .header a {
             color: #fff;
             text-decoration: none;
             padding: 8px 15px;
             border-radius: 5px;
-            transition:background-color 0.3s;
         }
-        .header-right a:hover {
+        .header a:hover {
             background-color: #555;
         }
-        .header-left a{
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .header-left a:hover {
-            background-color: #555;
+        .banner img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
         }
         .content {
-            display: flex;
-            flex-direction: column; 
-            gap: 20px; 
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
             padding: 20px;
-        }
-
-        .content1, .content2 {
-            display: flex; 
-            gap: 20px; 
-        }
-
-        .content1 > div, .content2 > div {
-            border: 1px solid #ccc; 
-            padding: 10px;
-            flex: 1; 
-            text-align: center;
-            background-color: #f9f9f9;
             border-radius: 8px;
         }
-
-        .content1 img, .content2 img {
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 sản phẩm mỗi hàng */
+            gap: 20px;
+        }
+        .product-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-item:hover {
+            transform: scale(1.03);
+        }
+        .product-item img {
             width: 100%;
-            height: auto;
+            height: 250px;
+            object-fit: cover;
             border-radius: 5px;
         }
-        .content img {
-            width: 500px;
-
+        .product-item h3 {
+            margin: 10px 0 5px;
+        }
+        .product-item p {
+            margin: 5px 0;
         }
         .footer {
-        background-color: black; 
-        color: white; 
-        text-align: center; 
-        padding: 20px 0; 
-        margin-top: 30px; 
-        font-size: 16px;
-    }
-
-    .footer p {
-        margin: 5px 0; 
-    }
-
+            background-color: black; 
+            color: white; 
+            text-align: center; 
+            padding: 20px 0; 
+            margin-top: 30px; 
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
+
     <div class="header">
-        <div class="header-right">
-    <a href="#">Trang chủ</a>
-    <a href="#">Danh mục</a>
-    <a href="#">TOP yêu thích</a>
-    <a href="#">Góp ý</a>
-    <a href="#">Hỏi đáp</a>
+        <div>
+            <a href="#">Trang chủ</a>
+            <a href="#">Danh mục</a>
+            <a href="#">TOP yêu thích</a>
+            <a href="#">Góp ý</a>
+            <a href="#">Hỏi đáp</a>
         </div>
-        <div class="header-left">
-
-<?php if (!empty($_SESSION['user'])): ?>
-    <p>Xin chào, <?php echo htmlspecialchars($_SESSION['user']['user']); ?> 
-       | <a href="index.php?act=logout">Đăng xuất</a></p>
-<?php else: ?>
-    <a href="index.php?act=login">Đăng nhập</a> | 
-    <a href="index.php?act=register">Đăng ký</a>
-<?php endif; ?>
-
+        <div>
+            <?php if (!empty($_SESSION['user'])): ?>
+                Xin chào, <?php echo htmlspecialchars($_SESSION['user']['user']); ?> 
+                | <a href="index.php?act=logout">Đăng xuất</a>
+            <?php else: ?>
+                <a href="index.php?act=login">Đăng nhập</a> | 
+                <a href="index.php?act=register">Đăng ký</a>
+            <?php endif; ?>
         </div>
     </div>
+
     <div class="banner">
         <img src="img/OIP.webp" alt="">
     </div>
-    <div class="content"> <h1>các sản phẩm nổi bật</h1>
-    <div class="content1">
-        <div>
-            <img src="img/OIP.webp" alt="">
-            <h1>đồ 1</h1>
-            <p>mô tả</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <h1>đồ 1</h1>
-            <p>mô tả</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <h1>đồ 1</h1>
-            <p>mô tả</p>
-        </div>
-    </div>
 
-    <div class="content2">
-        <div>
-            <img src="" alt="">
-            <h1>đồ 2</h1>
-            <p>mô tả</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <h1>đồ 2</h1>
-            <p>mô tả</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <h1>đồ 2</h1>
-            <p>mô tả</p>
-        </div>
+<div class="content">
+    <h2>Các sản phẩm nổi bật</h2>
+    <div class="product-list">
+        <?php foreach($products as $p): ?>
+            <?php 
+                // Kiểm tra ảnh
+                $imagePath = "img/OIP.jpg" . $p['img'];
+                if (empty($p['img']) || !file_exists($imagePath)) {
+                    $imagePath = "uploads/no-image.jpg"; // ảnh mặc định
+                }
+            ?>
+            <div class="product-item">
+                <img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($p['name']); ?>">
+                <h3><?php echo htmlspecialchars($p['name']); ?></h3>
+                <p><?php echo htmlspecialchars($p['detal']); ?></p>
+                <p><strong><?php echo number_format($p['price'], 0, ',', '.'); ?> VND</strong></p>
+                <p>Lượt xem: <?php echo htmlspecialchars($p['view']); ?></p>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
+    <div class="footer">
+        <p>Đỗ Hoàng Việt</p>
+        <p>PH58574</p>
+    </div>
 
-        <div class="footer">
-            <p>Đỗ Hoàng Việt</p>
-            <p>PH58574</p>
-        </div>
 </body>
 </html>
