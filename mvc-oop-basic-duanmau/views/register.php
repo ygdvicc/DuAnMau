@@ -1,32 +1,24 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
+<h1>Đăng ký</h1>
 
-    // Ở đây bạn sẽ lưu dữ liệu vào database
-    // Ví dụ đơn giản:
-    // $conn = new mysqli('localhost', 'root', '', 'ten_database');
-    // $conn->query("INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')");
+<?php if (!empty($error)): ?>
+    <p style="color:red;"><?php echo $error; ?></p>
+<?php endif; ?>
 
-    header('Location: login.php'); // Đăng ký xong quay về login
-    exit;
-}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Đăng ký</title>
-</head>
-<body>
-    <h2>Đăng ký</h2>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Tên đăng nhập" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Mật khẩu" required><br>
-        <button type="submit">Tạo tài khoản</button>
-    </form>
-    <p>Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
-</body>
-</html>
+<form action="index.php?act=register_post" method="POST">
+    <label>Tên đăng nhập:</label><br>
+    <input type="text" name="username" required><br><br>
+
+    <label>Mật khẩu:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Địa chỉ:</label><br>
+    <input type="text" name="address" required><br><br>
+
+    <label>Số điện thoại:</label><br>
+    <input type="text" name="telephone" required><br><br>
+
+    <button type="submit">Đăng ký</button>
+</form>

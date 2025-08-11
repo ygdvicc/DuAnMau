@@ -102,7 +102,15 @@
     <a href="#">Hỏi đáp</a>
         </div>
         <div class="header-left">
-            <a href="login.php">Đăng nhập</a>
+
+<?php if (!empty($_SESSION['user'])): ?>
+    <p>Xin chào, <?php echo htmlspecialchars($_SESSION['user']['user']); ?> 
+       | <a href="index.php?act=logout">Đăng xuất</a></p>
+<?php else: ?>
+    <a href="index.php?act=login">Đăng nhập</a> | 
+    <a href="index.php?act=register">Đăng ký</a>
+<?php endif; ?>
+
         </div>
     </div>
     <div class="banner">

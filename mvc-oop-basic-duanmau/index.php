@@ -1,5 +1,5 @@
-<?php 
-// Require toàn bộ các file khai báo môi trường, thực thi,...(không require view)
+<?php
+session_start(); // Bắt buộc có để dùng $_SESSION
 
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
@@ -14,11 +14,15 @@ require_once './models/ProductModel.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
-
-// Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
-
 match ($act) {
-    // Trang chủ
-    '/'=>(new ProductController())->Home(),
+    '/' => (new ProductController())->Home(),
+    'login' => (new ProductController())->LoginForm(),
+    'login_post' => (new ProductController())->LoginPost(),
+    'logout' => (new ProductController())->Logout(),
 
+    // Trang đăng ký
+    'register' => (new ProductController())->RegisterForm(),
+
+    // Xử lý đăng ký
+    'register_post' => (new ProductController())->RegisterPost(),
 };

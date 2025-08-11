@@ -1,16 +1,41 @@
 <?php 
-// Có class chứa các function thực thi tương tác với cơ sở dữ liệu 
 class ProductModel 
 {
     public $conn;
+
     public function __construct()
     {
         $this->conn = connectDB();
     }
 
-    // Viết truy vấn danh sách sản phẩm 
     public function getAllProduct()
     {
-        
+        // code lấy sản phẩm nếu cần
     }
+
+    // Đăng nhập
+    public function login($username, $password)
+    {
+        $sql = "SELECT * FROM account WHERE user = :user AND pass = :pass";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':user' => $username,
+            ':pass' => $password
+        ]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    // Đăng ký
+public function register($username, $password, $email, $address, $telephone)
+{
+    $sql = "INSERT INTO account (user, pass, email, address, telephone, role) 
+            VALUES (:user, :pass, :email, :address, :telephone, 0)";
+    $stmt = $this->conn->prepare($sql);
+    return $stmt->execute([
+        ':user' => $username,
+        ':pass' => $password,
+        ':email' => $email,
+        ':address' => $address,
+        ':telephone' => $telephone
+    ]);
+}
 }
